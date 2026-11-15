@@ -81,8 +81,7 @@ void drawScreen()
 
     cout << string(lineWidth, '-') << "\n|    |";
     for (int c = 0; c < COLS; c++)
-        cout << string(WIDTH / 2, ' ') << (char)('A' + c)
-             << string(WIDTH - WIDTH / 2 + 1, ' ') << "|";
+        cout << string(WIDTH / 2, ' ') << (char)('A' + c)<< string(WIDTH - WIDTH / 2 + 1, ' ') << "|";
     cout << "\n" << string(lineWidth, '-') << "\n";
 
     for (int r = 0; r < ROWS; r++)
@@ -101,7 +100,7 @@ void drawScreen()
                 if (content[r][c][0] == '=')
                     value = calculate(content[r][c], r, c);
                 else
-                    value = stod(content[r][c]);
+                    value = stod(content[r][c]);//stod convert string to double
 
                 text = to_string(value);
                 int end = text.length();
@@ -109,7 +108,7 @@ void drawScreen()
                     end--;
                 if (text[end - 1] == '.')
                     end--;
-                text = text.substr(0, end);
+                text = text.substr(0, end);//substr slice the string like in python[start:end]
                 if (text == "-0")
                     text = "0";
                 if ((int)text.length() > WIDTH)
@@ -131,7 +130,7 @@ void drawScreen()
     if (typing != "")
         cout << name << " > " << typing;
     else
-        cout << "Arrows: move   Type a value + Enter   Delete: clear   Q: quit";
+        cout << "Delete: clear Enter: submit  Q: quit";
     cout << flush;
 }
 
