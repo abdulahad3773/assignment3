@@ -28,12 +28,12 @@ bool isNumber(string s)
         else
             return false;
     }
-    return digits > 0 && decpoints <= 1;
+    return digits > 0 && decpoints <= 1;//only 1 decpoint and at least 1 digit
 }
 
 double calculate(string formula, int row, int col)
 {
-    double numbers[ROWS + COLS];
+    double numbers[29];
     int count = 0;
     int last = col;
     if (formula[1] == 'c')
