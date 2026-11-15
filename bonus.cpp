@@ -15,7 +15,7 @@ string typing = "";
 
 bool isNumber(string s)
 {
-    int digits = 0, points = 0;
+    int digits = 0, decpoints = 0;
     int i = 0;
     if (s.length() > 0 && s[0] == '-')
         i = 1;
@@ -24,11 +24,11 @@ bool isNumber(string s)
         if (s[i] >= '0' && s[i] <= '9')
             digits++;
         else if (s[i] == '.')
-            points++;
+            decpoints++;
         else
             return false;
     }
-    return digits > 0 && points <= 1;
+    return digits > 0 && decpoints <= 1;
 }
 
 double calculate(string formula, int row, int col)
@@ -108,7 +108,7 @@ void drawScreen()
                     end--;
                 if (text[end - 1] == '.')
                     end--;
-                text = text.substr(0, end);//substr slice the string like in python[start:end]
+                text = text.substr(0, end);
                 if (text == "-0")
                     text = "0";
                 if ((int)text.length() > WIDTH)
@@ -155,9 +155,9 @@ int main()
             if (typing.length() == 5 && typing[0] == '=' &&
                 (typing[1] == 'c' || typing[1] == 'r'))
             {
-                string op = typing.substr(2);
+                string op = typing.substr(2);//sub
                 if (op == "sum" || op == "sub" || op == "mul" || op == "div" || op == "avg")
-                    good = true;
+                    good = true;//invalid will not store cause good will be false
             }
             if (good)
                 content[curRow][curCol] = typing;
@@ -175,7 +175,7 @@ int main()
             typing = "";
             if (key == KEY_UP && curRow > 0)
                 curRow--;
-            else if (key == KEY_DOWN && curRow < ROWS - 1)
+            else if (key == KEY_DOWN && curRow < ROWS - 1)//as rows starts from 0 so the last row is ROWS - 1
                 curRow++;
             else if (key == KEY_LEFT && curCol > 0)
                 curCol--;
